@@ -5,3 +5,5 @@ dist/*
 venv
 example/db.sqlite3
 /build
+
+.idea/*
