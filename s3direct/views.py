@@ -45,7 +45,7 @@ def get_upload_params(request):
         return HttpResponse(data, content_type="application/json", status=400)
 
     if hasattr(key, '__call__'):
-        key = key(filename)
+        key = key(filename, request)
     else:
         # The literal string '${filename}' is an S3 field variable for key.
         # https://aws.amazon.com/articles/1434#aws-table

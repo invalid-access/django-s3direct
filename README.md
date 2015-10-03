@@ -79,7 +79,7 @@ S3DIRECT_DESTINATIONS = {
     'vids': ('uploads/vids', lambda u: u.is_authenticated(), ['video/mp4'],),
 
     # Allow anybody to upload any MIME type with a custom name function, eg:
-    'custom_filename': (lambda original_filename: 'images/unique.jpg',),
+    'custom_filename': (lambda original_filename, request: 'images/' + request.user.username + '/' + original_filename,),
 
     # Specify a non-default bucket for PDFs
     'pdfs': ('/', lambda u: True, ['application/pdf'], None, 'pdf-bucket',),
