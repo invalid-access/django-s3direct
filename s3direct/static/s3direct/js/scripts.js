@@ -62,11 +62,13 @@
         alert(msg)
     }
 
-    var update = function(el, xml) {
+    var update = function(el, xml, file) {
         var link = el.querySelector('.file-link'),
-            url  = el.querySelector('.file-url')
+            url  = el.querySelector('.file-url'),
+            src_filename = el.querySelector('.file-src-filename')
 
         url.value = parseURL(xml)
+        src_filename.value = file.name
         link.setAttribute('href', url.value)
         link.innerHTML = url.value.split('/').pop()
 
@@ -108,7 +110,7 @@
         request('POST', url, form, {}, el, true, function(status, xml){
             disableSubmit(false)
             if(status !== 201) return error(el, 'Sorry, failed to upload to S3.')
-            update(el, xml)
+            update(el, xml, file)
         })
     }
 
@@ -146,6 +148,7 @@
 
         var el = e.target.parentElement
         el.querySelector('.file-url').value = ''
+        e1.querySelector('.file-src-filename').value = ''
         el.querySelector('.file-input').value = ''
         el.className = 's3direct form-active'
     }
