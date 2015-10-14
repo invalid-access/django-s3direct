@@ -63,7 +63,7 @@ class S3DirectWidget(widgets.TextInput):
         src_filename = data[name+self.src_filename_suffix]
         if dst_url != '' and src_filename != '':
             value_dict = {'src_filename': src_filename, 'dst_url': dst_url}
-            value = json.dump
+            value = json.dumps(value_dict)
             return value
         return None
         #return super(S3DirectWidget, self).value_from_datadict(data, files, name)
